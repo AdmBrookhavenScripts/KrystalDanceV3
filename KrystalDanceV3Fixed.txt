@@ -928,8 +928,11 @@ function AnimLibrary:Play()
 
 		local pos
 
-		-- 🔊 HARD SYNC TO MUSIC IF PROVIDED
-		pos = (os.clock() - startClock) * (self.Speed or 1) + startOffset
+if dancing == true and sound69 and sound69.IsPlaying then
+    pos = sound69.TimePosition * (self.Speed or 1)
+else
+    pos = (os.clock() - startClock) * (self.Speed or 1) + startOffset
+end
 
 		if pos > self.Length then
 			if self.Looped then
@@ -1343,6 +1346,10 @@ CreateDanceTool(
     "Headlock.mp3"
 )
 
+CreateDanceTool("Headlock 2","Headlock2","https://raw.githubusercontent.com/AdmBrookhavenScripts/Scripts/refs/heads/main/Headlock2.lua","Headlock.mp3")
+
+CreateDanceTool("Headlock 3","Headlock3","https://raw.githubusercontent.com/AdmBrookhavenScripts/Scripts/refs/heads/main/Headlock3.lua","Headlock.mp3")
+
 CreateDanceTool(
     "Hakari",
     "Hakari",
@@ -1684,8 +1691,6 @@ CreateDanceTool("Kemusan","Kemusan","https://raw.githubusercontent.com/AdmBrookh
 CreateDanceTool("Im Ok","ImOk","https://raw.githubusercontent.com/AdmBrookhavenScripts/Scripts/refs/heads/main/ImOk.lua","ImOk.mp3")
 
 CreateDanceTool("Igaku","Igaku","https://raw.githubusercontent.com/AdmBrookhavenScripts/Scripts/refs/heads/main/Igaku.lua","Igaku2.mp3")
-
-CreateDanceTool("Headlock 2","Headlock3","https://raw.githubusercontent.com/AdmBrookhavenScripts/Scripts/refs/heads/main/Headlock3.lua","Headlock.mp3")
 
 CreateDanceTool("Guli Guli","Guli","https://raw.githubusercontent.com/AdmBrookhavenScripts/Scripts/refs/heads/main/Guli.lua","Guli.mp3")
 
