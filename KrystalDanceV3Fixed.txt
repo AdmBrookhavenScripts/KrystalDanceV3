@@ -30,6 +30,7 @@ loadstring(game:HttpGet("https://github.com/AdmBrookhavenScripts/GelatekHub/raw/
 local function choot(msg)
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(msg)
 end
+
 local ScreenGui = Instance.new("ScreenGui",KDV3)
 ScreenGui.Name ="KRYSTALDANCE"
 local ui = Instance.new("Frame",ScreenGui)
@@ -2058,6 +2059,9 @@ end
 ned.Rotation = 0 - 2 * math.cos(sine / 24)
 ned.Position = UDim2.new(0.6,0 - 10 * math.cos(sine / 32),0.8,0 - 10 * math.cos(sine / 45))
 end)
+task.wait()
+-- Custom Inventory modified by me
+loadstring(game:HttpGet("https://github.com/AdmBrookhavenScripts/KrystalDanceV3/raw/refs/heads/main/CustomInventory.lua"))()
 else 
   notify("Not reanimated (use curretangle or oxide)")
 end 
