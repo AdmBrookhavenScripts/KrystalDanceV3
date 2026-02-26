@@ -510,7 +510,7 @@ function MainScript()
 coroutine.resume(coroutine.create(function()
 settings().Physics.AllowSleep = false;
 
-gk=game.RunService.RenderStepped:Connect(function()
+gk=game.RunService.PreSimulation:Connect(function()
 if not Running then gk:Disconnect() end
 for i, v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer then
@@ -720,10 +720,10 @@ end
 
 local function wait2(tim)
 if tim<0.1 then
-game:GetService("RunService").Heartbeat:Wait()
+game:GetService("RunService").PreSimulation:Wait()
 else
 for i=1,tim*40 do
-game:GetService("RunService").Heartbeat:Wait()
+game:GetService("RunService").PreSimulation:Wait()
 end
 end
 end
@@ -744,24 +744,24 @@ char.Humanoid:Move(Vector3.new(0,0,-1),false)
 end
 local script = Instance.new("Script")
 ArtificialHB = Instance.new("BindableEvent",script)
-ArtificialHB.Name = "Heartbeat"
-script:WaitForChild("Heartbeat")
+ArtificialHB.Name = "PreSimulation"
+script:WaitForChild("PreSimulation")
 frame = 1 / 60
 tf = 0
 allowframeloss = false
 tossremainder = false
 lastframe = tick()
-script.Heartbeat:Fire()
-game:GetService("RunService").Heartbeat:Connect(function(s,p)
+script.PreSimulation:Fire()
+game:GetService("RunService").PreSimulation:Connect(function(s,p)
 tf = tf + s
 if tf >= frame then
 if allowframeloss then
-script.Heartbeat:Fire()
+script.PreSimulation:Fire()
 lastframe = tick()
 else
 for i = 1,math.floor(tf / frame) do
 pcall(function()
-script.Heartbeat:Fire()
+script.PreSimulation:Fire()
 end)
 end
 lastframe = tick()
@@ -784,7 +784,7 @@ end
 end
 function fwait(seconds)
 seconds = (seconds < 0.000001) and 0.000001 or seconds
-local event = game:GetService("RunService").PreRender or game:GetService("RunService").Heartbeat
+local event = game:GetService("RunService").PreRender or game:GetService("RunService").PreSimulation
 
    local startTime = tick()
    while tick() - startTime < seconds do
@@ -1916,7 +1916,7 @@ local g = 0
 local b = 0
 local stage = 1
 local guji=nil
-UPDATE=RunService.RenderStepped:Connect(function(deltaTime: number)
+UPDATE=RunService.PreSimulation:Connect(function(deltaTime: number)
 if not workspace[game.Players.LocalPlayer.Name .. "_Fake"] then 
 local tweenInfo = TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local tween = game:GetService("TweenService"):Create(CurrentFrame, tweenInfo, {Position = UDim2.new(0, 15, 1.15, 0)})
